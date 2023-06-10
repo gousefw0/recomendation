@@ -258,6 +258,7 @@ def recomendation():
             import statsmodels.api as sm
             model = ARIMA(history, order=((1,1,2)))
             model_fit = model.fit()
+            output = model_fit.forecast(steps=180)
             res=[]
             maxx=0
             for i in output:
