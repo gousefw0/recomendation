@@ -228,7 +228,7 @@ def recomendation():
  'UASG',
  'EGTS']
     recom=[]
-    for i in stocks[:5] :
+    for d in stocks[:5] :
             ss=requests.get(f"https://scrap-29ek.onrender.com/stock/{i}/{1095}")
             ss=ss.json()
             datetime=[]
@@ -261,7 +261,7 @@ def recomendation():
             output = model_fit.forecast(steps=180)
             res=[]
             maxx=0
-            for d in output:
+            for i in output:
                      res.append(i)
                      maxx=max(maxx,i)
             recom.append([((maxx-close[-1])/10),d,res[-1],close[-1]])
