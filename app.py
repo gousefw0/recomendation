@@ -261,7 +261,7 @@ def recomendation():
             output = model_fit.forecast(steps=180)
             res=[]
             maxx=0
-            for i in output:
+            for d in output:
                      res.append(i)
                      maxx=max(maxx,i)
             recom.append([((maxx-close[-1])/10),d,res[-1],close[-1]])
