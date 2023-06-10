@@ -228,7 +228,7 @@ def recomendation():
  'UASG',
  'EGTS']
     recom=[]
-    for i in stocks :
+    for i in stocks[:5] :
             ss=requests.get(f"https://scrap-29ek.onrender.com/stock/{i}/{1095}")
             ss=ss.json()
             datetime=[]
@@ -258,13 +258,17 @@ def recomendation():
             import statsmodels.api as sm
             model = ARIMA(history, order=((1,1,2)))
             model_fit = model.fit()
-            output = model_fit.forecast(steps=180)
             res=[]
+            maxx=0
             for i in output:
-                 res.append(i)
-            recom.append([(res[-1]-close[-1])/100,i,res[-1]])
+                     res.append(i)
+                     maxx=max(maxx,i)
+            recom.append([((maxx-close[-1])/10),d,res[-1],close[-1]])
     recom.sort(reverse=True)
-    return recom
+    results=[]
+    for m in recom[:10] :
+        results.append(m[1])
+    return results
 @app.route("/")
 def home():
     data = {'page':'home page','message':'ok'}
