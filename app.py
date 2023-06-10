@@ -229,7 +229,7 @@ def recomendation():
  'EGTS']
     recom=[]
     for d in stocks[:5] :
-            ss=requests.get(f"https://scrap-29ek.onrender.com/stock/{i}/{1095}")
+            ss=requests.get(f"https://scrap-29ek.onrender.com/stock/{d}/{1095}")
             ss=ss.json()
             datetime=[]
             open=[]
